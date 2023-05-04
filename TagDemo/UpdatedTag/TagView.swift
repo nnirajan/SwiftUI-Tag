@@ -13,9 +13,9 @@ struct TagView: View {
     let action: (() -> Void)?
     
     var body: some View {
-        HStack(alignment: .center) {
+        HStack {
             Text(content)
-                .multilineTextAlignment(.leading)
+                .fixedSize(horizontal: false, vertical: true)
                 .padding(EdgeInsets(top: 5, leading: 5, bottom: 5, trailing: 5))
             
             Button(action: action ?? {}) {

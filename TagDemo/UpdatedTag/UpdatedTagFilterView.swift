@@ -67,8 +67,6 @@ struct UpdatedTagFilterView<Data: Collection, Content: View>: View where Data.El
             remainingWidth = remainingWidth - (elementSize.width + spacing)
         }
         
-        print("uoip:", remainingWidth, availableWidth)
-        
         return rows
     }
 }
