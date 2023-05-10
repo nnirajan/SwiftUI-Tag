@@ -29,8 +29,6 @@ struct UpdatedTagFilterView<Data: Collection, Content: View>: View where Data.El
                                         .readSize { size in
                                             elementsSize[element] = size
                                         }
-                                    
-//                                    Text("\(elementsSize[element]?.height ?? 0)")
                                 }
                             }
                         }
@@ -39,8 +37,10 @@ struct UpdatedTagFilterView<Data: Collection, Content: View>: View where Data.El
                     }
                 }
                 .readSize { size in
-                    self.size = size
-                    availableWidth = size.width
+                    DispatchQueue.main.async {
+                        self.size = size
+                        availableWidth = size.width
+                    }
                 }
             }
             .frame(height: size.height)
@@ -72,14 +72,13 @@ struct UpdatedTagFilterView<Data: Collection, Content: View>: View where Data.El
 }
 
 struct UpdatedTagFilterView_Previews: PreviewProvider {
-    @State static var dataEg: [String] = ["ram ram ram ram", "hari hari hari hari hari hari hari hari hari hari hari hari harihari hari", "sdfsdfsdfsdf sdfsdf sdfsdfsdf sdfsd fsd fsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf"]
+//    @State static var dataEg: [String] = ["ram ram ram ram", "hari hari hari hari hari hari hari hari hari hari hari hari harihari hari", "sdfsdfsdfsdf sdfsdf sdfsdfsdf sdfsd fsd fsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf"]
     
-//    @State static var dataEg: [String] = ["purebred", "desexeddesexeddesexeddesexeddesexeddesexeddesexeddesexeddesexeddesexed"]
+    @State static var dataEg: [String] = ["purebred", "desexeddesexeddesexeddesexeddesexeddesexeddesexeddesexeddesexeddesexed"]
     
     static var previews: some View {
         UpdatedTagFilterView(data: dataEg, spacing: 8) { item in
-            Text(item)
-                .lineLimit(nil)
+            TagView(content: item, color: .white, action: nil)
         }
         
     }

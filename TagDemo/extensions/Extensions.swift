@@ -45,6 +45,10 @@ extension View {
                     .preference(key: SizePreferenceKey.self, value: $0.size)
             }
         )
-        .onPreferenceChange(SizePreferenceKey.self, perform: action)
+        .onPreferenceChange(SizePreferenceKey.self) { size in
+//            DispatchQueue.main.async {
+                action(size)
+//            }
+        }
     }
 }

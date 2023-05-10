@@ -8,12 +8,32 @@
 import SwiftUI
 
 struct UpdatedTagListScreen: View {
+    let datas = [
+        Examples().data,
+        Examples().data1,
+        Examples().data2,
+        Examples().data3,
+        Examples().data4
+    ]
+    
     var body: some View {
-        List {
-            UpdatedTagRowView()
-                .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+//        List {
+//            ForEach(datas, id: \.self) { data in
+//                UpdatedTagRowView(data: data)
+//            }
+//            .listRowInsets(.init(top: 0, leading: 0, bottom: 0, trailing: 0))
+//            .listRowSeparator(.hidden)
+//        }
+//        .listStyle(.plain)
+        
+        
+        ScrollView {
+            LazyVStack {
+                ForEach(datas, id: \.self) { data in
+                    UpdatedTagRowView(data: data)
+                }
+            }
         }
-        .listStyle(.plain)
     }
 }
 
