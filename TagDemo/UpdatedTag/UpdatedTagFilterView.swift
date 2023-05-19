@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct UpdatedTagFilterView<Data: Collection, Content: View>: View where Data.Element: Hashable {
+    // MARK: - properties
     @State private var size: CGSize = .zero
-    @State private var availableWidth: CGFloat = 5
     @State private var elementsSize: [Data.Element: CGSize] = [:]
     
     let data: Data
@@ -17,29 +17,27 @@ struct UpdatedTagFilterView<Data: Collection, Content: View>: View where Data.El
     let spacing: CGFloat
     let content: (Data.Element) -> Content
     
+    // MARK: - body
     var body: some View {
         VStack {
             GeometryReader { proxy in
-                ZStack {
-                    VStack(alignment: alignment, spacing: spacing) {
-                        ForEach(computeRows(), id: \.self) { rowElements in
-                            HStack(spacing: spacing) {
-                                ForEach(rowElements, id: \.self) { element in
-                                    content(element)
-                                        .readSize { size in
-                                            elementsSize[element] = size
-                                        }
-                                }
+                VStack(alignment: alignment, spacing: spacing) {
+                    ForEach(computeRows(availableWidth: proxy.size.width), id: \.self) { rowElements in
+                        HStack(spacing: spacing) {
+                            ForEach(rowElements, id: \.self) { element in
+                                content(element)
+                                    .readSize { size in
+                                        elementsSize[element] = size
+                                    }
                             }
                         }
-                        
-                        Text("\(size.width) \(size.height) \(availableWidth)")
                     }
+                    
+//                    Text("\(size.width) \(size.height) \(availableWidth)")
                 }
                 .readSize { size in
                     DispatchQueue.main.async {
                         self.size = size
-                        availableWidth = size.width
                     }
                 }
             }
@@ -47,7 +45,7 @@ struct UpdatedTagFilterView<Data: Collection, Content: View>: View where Data.El
         }
     }
     
-    func computeRows() -> [[Data.Element]] {
+    func computeRows(availableWidth: CGFloat) -> [[Data.Element]] {
         var rows: [[Data.Element]] = [[]]
         var currentRow = 0
         var remainingWidth = availableWidth - spacing
@@ -72,14 +70,9 @@ struct UpdatedTagFilterView<Data: Collection, Content: View>: View where Data.El
 }
 
 struct UpdatedTagFilterView_Previews: PreviewProvider {
-//    @State static var dataEg: [String] = ["ram ram ram ram", "hari hari hari hari hari hari hari hari hari hari hari hari harihari hari", "sdfsdfsdfsdf sdfsdf sdfsdfsdf sdfsd fsd fsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdfsdf"]
-    
-    @State static var dataEg: [String] = ["purebred", "desexeddesexeddesexeddesexeddesexeddesexeddesexeddesexeddesexeddesexed"]
-    
     static var previews: some View {
-        UpdatedTagFilterView(data: dataEg, spacing: 8) { item in
-            TagView(content: item, color: .white, action: nil)
+        UpdatedTagFilterView(data: Examples().data5, spacing: 8) { item in
+            TagView(content: item, color: .green, action: nil)
         }
-        
     }
 }

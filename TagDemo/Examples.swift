@@ -19,4 +19,6 @@ struct Examples {
     let data3 = ["ram", "This is a long sentence", "sdfsdfsdfsdfsdf sdfsdfsdfsdfsdf sdfsdfsdfsdfsdfsdfsdfwer123sdsdfjsldfjlksdjflkf"]
     
     let data4 = ["crossbred", "desexed", "less than 6 months", "male", "$300000 - 4000000"]
+    
+    let data5 = ["content", "content 2"]
 }

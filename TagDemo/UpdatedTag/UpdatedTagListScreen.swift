@@ -13,7 +13,8 @@ struct UpdatedTagListScreen: View {
         Examples().data1,
         Examples().data2,
         Examples().data3,
-        Examples().data4
+        Examples().data4,
+        Examples().data5,
     ]
     
     var body: some View {

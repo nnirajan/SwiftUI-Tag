@@ -15,8 +15,12 @@ struct UpdatedTagRowView: View {
     }
     
     var body: some View {
-        UpdatedTagFilterView(data: data, spacing: 8) { item in
-            TagView(content: item, color: .red, action: nil)
+        VStack(alignment: .leading, spacing: 8) {
+            Text("Title text")
+            
+            UpdatedTagFilterView(data: data, spacing: 8) { item in
+                TagView(content: item, color: .red, action: nil)
+            }
         }
         .padding()
     }
@@ -24,6 +28,6 @@ struct UpdatedTagRowView: View {
 
 struct UpdatedTagRowView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdatedTagRowView(data: Examples().data)
+        UpdatedTagRowView(data: Examples().data2)
     }
 }
