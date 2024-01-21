@@ -34,6 +34,8 @@ struct UpdatedTagFilterView<Data: Collection, Content: View>: View where Data.El
                     }
                     
 //                    Text("\(size.width) \(size.height) \(availableWidth)")
+                    Text("\(size.width) \(size.height) ")
+                    
                 }
                 .readSize { size in
                     DispatchQueue.main.async {
@@ -71,7 +73,7 @@ struct UpdatedTagFilterView<Data: Collection, Content: View>: View where Data.El
 
 struct UpdatedTagFilterView_Previews: PreviewProvider {
     static var previews: some View {
-        UpdatedTagFilterView(data: Examples().data5, spacing: 8) { item in
+        UpdatedTagFilterView(data: Examples().data2, spacing: 8) { item in
             TagView(content: item, color: .green, action: nil)
         }
     }
